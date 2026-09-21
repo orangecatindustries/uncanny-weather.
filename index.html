@@ -16,11 +16,40 @@
             align-items: center;
             font-family: "Outfit", sans-serif;
             color: rgb(202, 202, 202);
+            overflow-x: hidden;
+        }
+
+        body.day {
+            background-color: rgb(90, 139, 179);
+        }
+
+        .fullwrap {
+            padding: 2em;
+            background-color: #0f0f0f;
+            border-style: solid;
+            border-width: 1px;
+            border-color: #353535;
+            border-radius: 18px;
+            position: absolute;
+            top: 18vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            z-index: 999;
+            transition: 0.3s;
+            box-shadow: #0f0f0f 0px 0px 10px;
+        }
+
+        .fullwrap:hover {
+            transition: 0.3s;
+            box-shadow: #0f0f0f 0px 0px 18px;
+            border-color: #525252;
         }
 
         input {
             background-color: rgb(49, 49, 49);
-            height: 50px;
+            height: 46px;
             width: 200px;
             border-style: solid;
             border-width: 1px;
@@ -30,6 +59,7 @@
             font-size: 15px;
             color: rgb(202, 202, 202);
             text-align: center;
+            transition: 0.1s ease;
         }
 
         form {
@@ -56,6 +86,10 @@
         }
 
         button:hover {
+            transform: scale(1.03);
+        }
+
+        input:hover {
             transform: scale(1.03);
         }
 
@@ -99,7 +133,7 @@
             border-style: solid;
             border-width: 1px;
             border-color: #525252;
-            
+
         }
 
         .thirdp {
@@ -114,83 +148,117 @@
         .tempdiv p:last-child {
             align-self: flex-end;
         }
+
+        .btnwrap {
+            display: flex;
+            justify-content: space-between;
+            gap: 1em;
+        }
+        
+
+        /* body color */
+
+        .bodycolor {
+            top: -20%;
+            right: 5%;
+            position: absolute;
+            z-index: -99;
+        }
+
+        .ball {
+            margin: 50px 50%;
+            border-radius: 50%;
+            width: 700px;
+            height: 700px;
+            background-color: orange;
+            box-shadow: 0 0 35px 5px yellow, 0 0 25px 10px yellow inset
+        }
+
     </style>
 </head>
 
 <body>
-    <h1>weather</h1>
-    <form action="" id="id">
-        <input type="text" id="content">
-        <button id="submit-id">click to search!</button>
-        <button id="burger" onclick="getLocation()">check your location</button>
-    </form>
-    <h2 id="temperaturetext">temperatures will show here!</h2>
-    <div id="divid" class="divwrap">
-        <div class="first">
-            <div class="wrapper">
-                <div class="tempdiv">
-                    <strong>
-                        <p class="firstp">--°C</p>
-                    </strong>
-                    <p class="secondp">--°C</p>
-                </div>
-                <p class="thirdp">Sunday</p>
-            </div>
-            <div class="wrapper">
-                <div class="tempdiv">
-                    <strong>
-                        <p class="firstp">--°C</p>
-                    </strong>
-                    <p class="secondp">--°C</p>
-                </div>
-                <p class="thirdp">Monday</p>
-            </div>
-            <div class="wrapper">
-                <div class="tempdiv">
-                    <strong>
-                        <p class="firstp">--°C</p>
-                    </strong>
-                    <p class="secondp">--°C</p>
-                </div>
-                <p class="thirdp">Tuesday</p>
-            </div>
+    <div class="bodycolor">
+        <div class="day">
+            <div class="ball"></div>
         </div>
-        <div class="first">
-            <div class="wrapper">
-                <div class="tempdiv">
-                    <strong>
-                        <p class="firstp">--°C</p>
-                    </strong>
-                    <p class="secondp">--°C</p>
-                </div>
-                <p class="thirdp">Wednesday</p>
+    </div>
+    <div class="fullwrap">
+        <h1>weather</h1>
+        <form action="" id="id">
+            <div class="btnwrap"><input type="text" id="content">
+                <button id="submit-id">click to search!</button>
             </div>
-            <div class="wrapper">
-                <div class="tempdiv">
-                    <strong>
-                        <p class="firstp">--°C</p>
-                    </strong>
-                    <p class="secondp">--°C</p>
+            <button id="burger" onclick="getLocation()">check your location</button>
+        </form>
+        <h2 id="temperaturetext">temperatures will show here!</h2>
+        <div id="divid" class="divwrap">
+            <div class="first">
+                <div class="wrapper">
+                    <div class="tempdiv">
+                        <strong>
+                            <p class="firstp">--°C</p>
+                        </strong>
+                        <p class="secondp">--°C</p>
+                    </div>
+                    <p class="thirdp">Sunday</p>
                 </div>
-                <p class="thirdp">Thursday</p>
+                <div class="wrapper">
+                    <div class="tempdiv">
+                        <strong>
+                            <p class="firstp">--°C</p>
+                        </strong>
+                        <p class="secondp">--°C</p>
+                    </div>
+                    <p class="thirdp">Monday</p>
+                </div>
+                <div class="wrapper">
+                    <div class="tempdiv">
+                        <strong>
+                            <p class="firstp">--°C</p>
+                        </strong>
+                        <p class="secondp">--°C</p>
+                    </div>
+                    <p class="thirdp">Tuesday</p>
+                </div>
             </div>
-            <div class="wrapper">
-                <div class="tempdiv">
-                    <strong>
-                        <p class="firstp">--°C</p>
-                    </strong>
-                    <p class="secondp">--°C</p>
+            <div class="first">
+                <div class="wrapper">
+                    <div class="tempdiv">
+                        <strong>
+                            <p class="firstp">--°C</p>
+                        </strong>
+                        <p class="secondp">--°C</p>
+                    </div>
+                    <p class="thirdp">Wednesday</p>
                 </div>
-                <p class="thirdp">Friday</p>
-            </div>
-            <div class="wrapper">
-                <div class="tempdiv">
-                    <strong>
-                        <p class="firstp">--°C</p>
-                    </strong>
-                    <p class="secondp">--°C</p>
+                <div class="wrapper">
+                    <div class="tempdiv">
+                        <strong>
+                            <p class="firstp">--°C</p>
+                        </strong>
+                        <p class="secondp">--°C</p>
+                    </div>
+                    <p class="thirdp">Thursday</p>
                 </div>
-                <p class="thirdp">Saturday</p>
+                <div class="wrapper">
+                    <div class="tempdiv">
+                        <strong>
+                            <p class="firstp">--°C</p>
+                        </strong>
+                        <p class="secondp">--°C</p>
+                    </div>
+                    <p class="thirdp">Friday</p>
+                </div>
+                <div class="wrapper">
+                    <div class="tempdiv">
+                        <strong>
+                            <p class="firstp">--°C</p>
+                        </strong>
+                        <p class="secondp">--°C</p>
+                    </div>
+                    <p class="thirdp">Saturday</p>
+                </div>
             </div>
         </div>
     </div>
@@ -242,7 +310,7 @@
             const input = document.getElementById("content").value;
             const token = 'pk.eyJ1IjoibWlkbmlnaHRtYXJpc3NhIiwiYSI6ImNtdTlvbXE5bzAzemoyd3M3aHBzNTgybnEifQ.n65gTo49i7D5nrgs_bLfIg';
             const newurl = `https://api.mapbox.com/search/geocode/v6/forward?q=${input}&types=place&autocomplete=false&access_token=${token}`;
-            let text = document.getElementById("temperaturetext");
+            const text = document.getElementById("temperaturetext");
 
             if (input.trim() === "") {
                 return;
@@ -273,9 +341,28 @@
                 });
         });
 
-        function getWeather(lat, lon) {
+        function checkName(lat, lon) {
+            const checkUrl = `https://nominatim.openstreetmap.org/reverse?lat=${lat}&lon=${lon}&format=json`;
+            fetch(checkUrl)
+                .then(response => {
+                    if (!response.ok) {
+                        throw new Error('Check has failed!');
+                    }
+                    return response.json();
+                })
+                .then(data => {
+                    const text = document.getElementById("temperaturetext");
+                    console.log('City:', data.address.city);
+                    text.textContent = `${data.address.city}`;
+                })
+                .catch(error => {
+                    console.error('There was a problem with getting your fetch operation:', error);
+                });
+        }
+
+        function getWeather(lat, lon, text) {
             const days = 7;
-            const apiUrl = `https://api.open-meteo.com/v1/forecast?latitude=${lat}&longitude=${lon}&daily=temperature_2m_max,temperature_2m_min&forecast_days=${days}&timezone=auto`;
+            const apiUrl = `https://api.open-meteo.com/v1/forecast?latitude=${lat}&longitude=${lon}&daily=temperature_2m_max,temperature_2m_min&forecast_days=${days}&timezone=auto&current=is_day`;
 
             fetch(apiUrl)
                 .then(response => {
@@ -289,18 +376,28 @@
                     const wrapdiv = document.getElementById("divid");
                     const divs = wrapdiv.querySelectorAll(".wrapper");
                     const { time, temperature_2m_max, temperature_2m_min } = data.daily;
+                    const { is_day } = data.current;
                     const weekdays = ["Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"];
+                    if (is_day === 1) {
+                        document.body.classList.add("day");
+                    } else {
+                        document.body.classList.remove("day");
+                    }
+                    checkName(lat, lon, text);
                     time.forEach((date, i) => {
                         if (divs[i]) {
                             const highP = divs[i].querySelector(".firstp");
                             const lowP = divs[i].querySelector(".secondp");
                             const thirdP = divs[i].querySelector(".thirdp");
                             const weekday = new Date(date);
+                            if (is_day === 1) {
+                                document.body.classList.add(".day");
+                            }
                             if (highP) highP.textContent = `${Math.round(temperature_2m_max[i])}°C`;
                             if (lowP) lowP.textContent = `${Math.round(temperature_2m_min[i])}°C`;
                             if (thirdP) thirdP.textContent = `${weekdays[weekday.getDay()]}`;
                         }
-                        console.log(`${date}: high ${temperature_2m_max[i]}${data.daily_units.temperature_2m_max}, low ${temperature_2m_min[i]}${data.daily_units.temperature_2m_max}`);
+                        console.log(`${date}: high ${temperature_2m_max[i]}${data.daily_units.temperature_2m_max}, low ${temperature_2m_min[i]}${data.daily_units.temperature_2m_max}, day ${is_day}`);
                     });
                 })
                 .catch(error => {
