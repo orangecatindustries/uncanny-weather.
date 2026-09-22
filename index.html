@@ -4,7 +4,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>uncanny weather website</title>
+    <title>uncanny weather</title>
     <style>
         @import url('https://fonts.googleapis.com/css2?family=Outfit:wght@100..900&display=swap');
 
@@ -17,14 +17,25 @@
             font-family: "Outfit", sans-serif;
             color: rgb(202, 202, 202);
             overflow-x: hidden;
+            transition: 0.5s;
         }
 
         body.day {
-            background-color: rgb(90, 139, 179);
+            background-image: linear-gradient(to top, rgb(231, 231, 231) 0%, rgb(107, 174, 255) 40%, #318ef8 100%);
+            background-repeat: no-repeat;
+            background-attachment: fixed;
+        }
+
+        body.night {
+            transition: 0.5s;
+            background-attachment: fixed;
+            background-image: linear-gradient(to top, rgba(40, 62, 81, 1) 0%, rgba(10, 35, 66, 1) 40%, #111 100%);
+            background-repeat: no-repeat;
         }
 
         .fullwrap {
-            padding: 2em;
+            width: 440px;
+            padding: 0em 2em 2em 2em;
             background-color: #0f0f0f;
             border-style: solid;
             border-width: 1px;
@@ -45,6 +56,16 @@
             transition: 0.3s;
             box-shadow: #0f0f0f 0px 0px 18px;
             border-color: #525252;
+        }
+
+        .tempwrap {
+            height: 0px;
+            overflow: hidden;
+            transition: 0.5s;
+        }
+
+        h2 {
+            text-align: center;
         }
 
         input {
@@ -133,7 +154,6 @@
             border-style: solid;
             border-width: 1px;
             border-color: #525252;
-
         }
 
         .thirdp {
@@ -154,15 +174,26 @@
             justify-content: space-between;
             gap: 1em;
         }
-        
+
 
         /* body color */
 
-        .bodycolor {
+        .sun {
             top: -20%;
             right: 5%;
             position: absolute;
             z-index: -99;
+            transition: 0.5s;
+            display: none;
+        }
+
+        .moon {
+            right: 80%;
+            position: absolute;
+            z-index: -99;
+            transition: 0.5s;
+            top: 30%;
+            display: none;
         }
 
         .ball {
@@ -171,93 +202,120 @@
             width: 700px;
             height: 700px;
             background-color: orange;
-            box-shadow: 0 0 35px 5px yellow, 0 0 25px 10px yellow inset
+            box-shadow: 0 0 125px 5px yellow, 0 0 25px 10px yellow inset;
+            animation: sunshine alternate infinite ease-in-out 5s;
         }
 
+        .mball {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            height: 400px;
+            width: 400px;
+            box-shadow: -90px -15px 29px 5px white;
+            border-radius: 50%;
+        }
+
+        @keyframes sunshine {
+            0% {
+                box-shadow: 0 0 125px 5px yellow, 0 0 25px 10px yellow inset
+            }
+
+            100% {
+                box-shadow: 0 0 235px 5px yellow, 0 0 25px 10px yellow inset;
+            }
+        }
     </style>
 </head>
 
 <body>
     <div class="bodycolor">
-        <div class="day">
+        <div class="sun">
             <div class="ball"></div>
+        </div>
+        <div class="moon">
+            <div class="mball"></div>
         </div>
     </div>
     <div class="fullwrap">
-        <h1>weather</h1>
+        <h1>uncanny weather.</h1>
         <form action="" id="id">
             <div class="btnwrap"><input type="text" id="content">
                 <button id="submit-id">click to search!</button>
             </div>
             <button id="burger" onclick="getLocation()">check your location</button>
         </form>
-        <h2 id="temperaturetext">temperatures will show here!</h2>
-        <div id="divid" class="divwrap">
-            <div class="first">
-                <div class="wrapper">
-                    <div class="tempdiv">
-                        <strong>
-                            <p class="firstp">--°C</p>
-                        </strong>
-                        <p class="secondp">--°C</p>
+        <div class="tempwrap">
+            <h2 id="temperaturetext">temperatures will show here!</h2>
+            <div id="divid" class="divwrap">
+                <div class="first">
+                    <div class="wrapper">
+                        <div class="tempdiv">
+                            <strong>
+                                <number-flow></number-flow>
+                                <p class="firstp">--°C</p>
+                            </strong>
+                            <p class="secondp">--°C</p>
+                        </div>
+                        <p class="thirdp">Sunday</p>
                     </div>
-                    <p class="thirdp">Sunday</p>
+                    <div class="wrapper">
+                        <div class="tempdiv">
+                            <strong>
+                                <p class="firstp">--°C</p>
+                            </strong>
+                            <p class="secondp">--°C</p>
+                        </div>
+                        <p class="thirdp">Monday</p>
+                    </div>
+                    <div class="wrapper">
+                        <div class="tempdiv">
+                            <strong>
+                                <p class="firstp">--°C</p>
+                            </strong>
+                            <p class="secondp">--°C</p>
+                        </div>
+                        <p class="thirdp">Tuesday</p>
+                    </div>
                 </div>
-                <div class="wrapper">
-                    <div class="tempdiv">
-                        <strong>
-                            <p class="firstp">--°C</p>
-                        </strong>
-                        <p class="secondp">--°C</p>
+                <div class="first">
+                    <div class="wrapper">
+                        <div class="tempdiv">
+                            <strong>
+                                <p class="firstp">--°C</p>
+                            </strong>
+                            <p class="secondp">--°C</p>
+                        </div>
+                        <p class="thirdp">Wednesday</p>
                     </div>
-                    <p class="thirdp">Monday</p>
-                </div>
-                <div class="wrapper">
-                    <div class="tempdiv">
-                        <strong>
-                            <p class="firstp">--°C</p>
-                        </strong>
-                        <p class="secondp">--°C</p>
+                    <div class="wrapper">
+                        <div class="tempdiv">
+                            <strong>
+                                <p class="firstp">--°C</p>
+                            </strong>
+                            <p class="secondp">--°C</p>
+                        </div>
+                        <p class="thirdp">Thursday</p>
                     </div>
-                    <p class="thirdp">Tuesday</p>
-                </div>
-            </div>
-            <div class="first">
-                <div class="wrapper">
-                    <div class="tempdiv">
-                        <strong>
-                            <p class="firstp">--°C</p>
-                        </strong>
-                        <p class="secondp">--°C</p>
+                    <div class="wrapper">
+                        <div class="tempdiv">
+                            <strong>
+                                <p class="firstp">--°C</p>
+                            </strong>
+                            <p class="secondp">--°C</p>
+                        </div>
+                        <p class="thirdp">Friday</p>
                     </div>
-                    <p class="thirdp">Wednesday</p>
-                </div>
-                <div class="wrapper">
-                    <div class="tempdiv">
-                        <strong>
-                            <p class="firstp">--°C</p>
-                        </strong>
-                        <p class="secondp">--°C</p>
+                    <div class="wrapper">
+                        <div class="tempdiv">
+                            <strong>
+                                <p class="firstp">--°C</p>
+                            </strong>
+                            <p class="secondp">--°C</p>
+                        </div>
+                        <p class="thirdp">Saturday</p>
                     </div>
-                    <p class="thirdp">Thursday</p>
-                </div>
-                <div class="wrapper">
-                    <div class="tempdiv">
-                        <strong>
-                            <p class="firstp">--°C</p>
-                        </strong>
-                        <p class="secondp">--°C</p>
-                    </div>
-                    <p class="thirdp">Friday</p>
-                </div>
-                <div class="wrapper">
-                    <div class="tempdiv">
-                        <strong>
-                            <p class="firstp">--°C</p>
-                        </strong>
-                        <p class="secondp">--°C</p>
-                    </div>
-                    <p class="thirdp">Saturday</p>
                 </div>
             </div>
         </div>
@@ -378,10 +436,18 @@
                     const { time, temperature_2m_max, temperature_2m_min } = data.daily;
                     const { is_day } = data.current;
                     const weekdays = ["Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"];
+                    const sun = document.querySelector(".sun");
+                    const moon = document.querySelector(".moon");
                     if (is_day === 1) {
                         document.body.classList.add("day");
+                        document.body.classList.remove("night");
+                        sun.style.display = "block";
+                        moon.style.display = "none";
                     } else {
                         document.body.classList.remove("day");
+                        document.body.classList.add("night");
+                        sun.style.display = "none";
+                        moon.style.display = "block";
                     }
                     checkName(lat, lon, text);
                     time.forEach((date, i) => {
@@ -390,12 +456,10 @@
                             const lowP = divs[i].querySelector(".secondp");
                             const thirdP = divs[i].querySelector(".thirdp");
                             const weekday = new Date(date);
-                            if (is_day === 1) {
-                                document.body.classList.add(".day");
-                            }
                             if (highP) highP.textContent = `${Math.round(temperature_2m_max[i])}°C`;
                             if (lowP) lowP.textContent = `${Math.round(temperature_2m_min[i])}°C`;
                             if (thirdP) thirdP.textContent = `${weekdays[weekday.getDay()]}`;
+                            document.querySelector(`.tempwrap`).style.height = `410px`;
                         }
                         console.log(`${date}: high ${temperature_2m_max[i]}${data.daily_units.temperature_2m_max}, low ${temperature_2m_min[i]}${data.daily_units.temperature_2m_max}, day ${is_day}`);
                     });
